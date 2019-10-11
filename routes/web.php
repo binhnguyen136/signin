@@ -16,10 +16,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/redirect/{social}', 'Auth\SocialAuthController@redirect');
+Route::get('/callback/{social}', 'Auth\SocialAuthController@callback');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/google', 'Auth\SocialAuthController@redirectToProvider');
-Route::get('/callback', 'Auth\SocialAuthController@handleProviderCallback');
-Route::get('/facebook', 'Auth\FacebookAuthController@redirectToProvider');
-Route::get('/facebook/callback', 'Auth\FacebookAuthController@handleProviderCallback');
 
