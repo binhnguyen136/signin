@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userInfo = Auth::user();
+
+        return view('home')->with('userInfo', $userInfo);
+    }
+
+    public function update(Request $request)
+    {
+        $user = Auth::user();
+
+        $updateData = $request->all();
+        $user->update($updateData);
+
+        return redirect()->back()->with('message', 'Updated infomation successfully');
     }
 }

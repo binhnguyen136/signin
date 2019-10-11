@@ -11,6 +11,17 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <a class="btn btn-link" href="{{ URL::to('redirect/facebook') }}">
+                                <i class="fa fa-facebook-official"></i> Đăng nhập bằng Facebook
+                                </a>
+                                <a class="btn btn-link" href="{{ URL::to('redirect/google') }}">
+                                    <i class="fa fa-google-plus-square" aria-hidden="true"></i> Đăng nhập bằng Google
+                                </a>
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -62,17 +73,6 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <a class="btn btn-link" href="{{ URL::to('redirect/facebook') }}">
-                                    <i class="fa fa-facebook-official" aria-hidden="true"></i> Đăng nhập bằng Facebook
-                                </a>
-                                <a class="btn btn-link" href="{{ URL::to('redirect/google') }}">
-                                    <i class="fa fa-google-plus-square" aria-hidden="true"></i> Đăng nhập bằng Google
-                                </a>
                             </div>
                         </div>
                     </form>

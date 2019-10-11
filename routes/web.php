@@ -19,5 +19,7 @@ Auth::routes();
 Route::get('/redirect/{social}', 'Auth\SocialAuthController@redirect');
 Route::get('/callback/{social}', 'Auth\SocialAuthController@callback');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::group(['middleware' => 'auth'], function($r) {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::post('/update-profile', 'HomeController@update');
+});

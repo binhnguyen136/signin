@@ -23,6 +23,12 @@ class SocialAuthController extends Controller
         $user = SocialAccountService::createOrGetUser($socialiteUser, $social);
         auth()->login($user);
 
-        return redirect()->to('/home');
+        $userInfo = new \stdClass();
+        $userInfo->name = $user->name;
+        $userInfo->email = $user->email;
+        $userInfo->phone = $user->phone ?? '';
+        $userInfo->address = $user->address ?? '';
+
+        return redirect()->to('/home')->with('userInfo', $userInfo);
     }
 }
