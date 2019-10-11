@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Auth;
-use Illuminate\Support\Facades\Log;
+use Hash;
 
 class HomeController extends Controller
 {
@@ -36,6 +37,30 @@ class HomeController extends Controller
 
         $updateData = $request->all();
         $user->update($updateData);
+
+        return redirect()->back()->with('message', 'Updated infomation successfully');
+    }
+
+    public function change_pass_index()
+    {
+        $userInfo = Auth::user();
+
+        return view('password')->with('userInfo', $userInfo);
+    }
+
+    public function change_pass(Request $request)
+    {
+        $user = Auth::user();
+
+        $updateData = $request->all();
+        
+        if ($request->confirm_password != $request->password) {
+            return redirect()->back()->withErrors('Password confirm not matches');
+        }
+
+        $user->update([
+            'password' => Hash::make($request->password)
+        ]);
 
         return redirect()->back()->with('message', 'Updated infomation successfully');
     }

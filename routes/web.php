@@ -22,4 +22,6 @@ Route::get('/callback/{social}', 'Auth\SocialAuthController@callback');
 Route::group(['middleware' => 'auth'], function($r) {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::post('/update-profile', 'HomeController@update');
+    Route::get('/change-password', 'HomeController@change_pass_index')->name('change-password');
+    Route::post('/change-password', 'HomeController@change_pass')->name('change-password');
 });

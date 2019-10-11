@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Profile infomation</div>
+                <div class="card-header">Change password</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -24,23 +24,24 @@
                         </div>
                     @endif
 
-                    <form action="{{ url('update-profile') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        Your name:
-                        <input class="form-control" type="text" value="{{ $userInfo->name }}" name="name">
-                        <br/>
-                        Email:
-                        <input class="form-control" type="text" value="{{ $userInfo->email }}" name="email">
-                        <br/>
-                        Phone:
-                        <input class="form-control" type="text" value="{{ $userInfo->phone }}" name="phone">
-                        <br/>
-                        Address:
-                        <input class="form-control" type="text" value="{{ $userInfo->address }}" name="address">
+                    @if($errors->any())
+                        <div class="alert alert-danger mb-2" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            @foreach ($errors->all() as $error)
+                                <div>{{ $error }}</div>
+                            @endforeach
+                        </div>
+                    @endif
 
-                        <a href="{{ url('change-password') }}" style="margin-top: 20px; float: left;">
-                            {{ __('Change password') }}
-                        </a>
+                    <form action="{{ url('change-password') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        New password:
+                        <input class="form-control" type="password" name="password">
+                        <br/>
+                        Confirm new password:
+                        <input class="form-control" type="password" name="confirm_password">
 
                         <button type="submit" class="btn btn-primary" style="margin-top: 20px; float: right;">
                             {{ __('Update') }}
