@@ -67,10 +67,10 @@
 
                         <div class="form-group">
                             <div class="col-md-8">
-                                <a class="btn btn-link" href="{{ URL::to('auth/facebook') }}">
+                                <a class="btn btn-link" href="{{ URL::to('facebook') }}">
                                     <i class="fa fa-facebook-official" aria-hidden="true"></i> Đăng nhập bằng Facebook
                                 </a>
-                                <a class="btn btn-link" href="{{ URL::to('redirect') }}">
+                                <a class="btn btn-link" href="{{ URL::to('google') }}">
                                     <i class="fa fa-google-plus-square" aria-hidden="true"></i> Đăng nhập bằng Google
                                 </a>
                             </div>
