@@ -19,7 +19,8 @@ class SocialAuthController extends Controller
 
     public function callback($social)
     {
-        $user = SocialAccountService::createOrGetUser(Socialite::driver($social)->user(), $social);
+        $socialiteUser = Socialite::driver($social)->user();
+        $user = SocialAccountService::createOrGetUser($socialiteUser, $social);
         auth()->login($user);
 
         return redirect()->to('/home');

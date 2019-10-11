@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Social login
+                Socialite
                 </div>
             </div>
         </div>
